@@ -9,14 +9,14 @@ function union(a, b) {
   return new Set([...a, ...b]);
 }
 
-function* parseEdges(dot) {
+export function* parseEdges(dot) {
   const matches = dot.matchAll(/^\s*"(.+)" -> "(.+)"/gm);
   for (const [_, from, to] of matches) {
     yield [from, to];
   }
 }
 
-function groupForwards(it) {
+export function groupForwards(it) {
   const nodes = {};
   for (const [from, to] of it) {
     if (nodes[from]) nodes[from].add(to);
@@ -25,7 +25,7 @@ function groupForwards(it) {
   return nodes;
 }
 
-function groupBackwards(it) {
+export function groupBackwards(it) {
   const nodes = {};
   for (const [from, to] of it) {
     if (nodes[to]) nodes[to].add(from);
@@ -51,7 +51,7 @@ function* filterValidChildren(children, backwards, visited) {
   }
 }
 
-function* generateWaves(root, backwards, forwards) {
+export function* generateWaves(root, backwards, forwards) {
   let currentWave = new Set([root]);
   yield currentWave;
   let visited = new Set(currentWave);
