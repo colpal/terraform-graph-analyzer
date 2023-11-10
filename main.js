@@ -1,5 +1,6 @@
 #!/usr/bin/env deno run --allow-read
 import {
+  generateChart,
   generateWaves,
   groupBackwards,
   groupForwards,
@@ -15,5 +16,5 @@ const waves = [...generateWaves("[root] root", backwards, forwards)]
     wave,
     index,
   }));
-waves.sort((a, b) => b.wave.size - a.wave.size);
-console.log(waves)
+const chart = generateChart(waves);
+console.log(waves, Deno.args[0], chart);
