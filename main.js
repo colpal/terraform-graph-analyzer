@@ -14,4 +14,8 @@ const backwards = groupBackwards(edges);
 const waves = [...generateWaves("[root] root", backwards, forwards)]
   .map((wave, index) => ({ index, wave }));
 const chart = generateChart(waves);
-console.log(waves, Deno.args[0], chart);
+console.log(JSON.stringify(
+  { waves, chart, filename: Deno.args[0] },
+  (_, value) => value instanceof Set ? [...value] : value,
+  2,
+));
