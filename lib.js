@@ -68,7 +68,14 @@ export function* generateWaves(root, backwards, forwards) {
 }
 
 export function generateChart(waves) {
-  return waves.map(({ wave }, i) =>
-    `${i} `.padStart(3, "0") + "#".repeat(Math.ceil(wave.size / 10))
+  const indexPad = Math.ceil(Math.log10(waves.length));
+  const sizePad = Math.ceil(
+    Math.log10(Math.max(...waves.map(([, wave]) => wave.size))),
   );
+  return waves.map(([index, wave]) => {
+    const label = `${index}`.padStart(indexPad, "0");
+    const size = `${wave.size}`.padStart(sizePad, "0");
+    const bar = "#".repeat(Math.ceil(wave.size / 10));
+    return `${index}: [${size}] ${bar}`;
+  });
 }
