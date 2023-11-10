@@ -12,6 +12,6 @@ const edges = [...parseEdges(text)];
 const forwards = groupForwards(edges);
 const backwards = groupBackwards(edges);
 const waves = [...generateWaves("[root] root", backwards, forwards)]
-  .map((wave, index) => [index, wave]);
+  .map((wave, index) => ({ index, wave }));
 const chart = generateChart(waves);
 console.log(waves, Deno.args[0], chart);

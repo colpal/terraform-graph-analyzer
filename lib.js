@@ -70,9 +70,9 @@ export function* generateWaves(root, backwards, forwards) {
 export function generateChart(waves) {
   const indexPad = Math.ceil(Math.log10(waves.length));
   const sizePad = Math.ceil(
-    Math.log10(Math.max(...waves.map(([, wave]) => wave.size))),
+    Math.log10(Math.max(...waves.map(({ wave }) => wave.size))),
   );
-  return waves.map(([index, wave]) => {
+  return waves.map(({ index, wave }) => {
     const label = `${index}`.padStart(indexPad, "0");
     const size = `${wave.size}`.padStart(sizePad, "0");
     const bar = "#".repeat(Math.ceil(wave.size / 10));
