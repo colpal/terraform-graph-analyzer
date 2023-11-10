@@ -66,3 +66,9 @@ export function* generateWaves(root, backwards, forwards) {
     currentWave = nextWave;
   }
 }
+
+export function generateChart(waves) {
+  return waves.map(({ wave }, i) =>
+    `${i} `.padStart(3, "0") + "#".repeat(Math.ceil(wave.size / 10))
+  );
+}
